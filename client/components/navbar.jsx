@@ -20,12 +20,15 @@ const Topbar = (props) => {
         props.logOutUser();
     }
 
-    let accountStatus;
+    let options;
 
     if (props.auth) {
-        accountStatus = <Nav.Link onClick={handleLogout}>Sign Out</Nav.Link>;
+        options = <Nav><Nav.Link onClick={handleLogout}>Sign Out</Nav.Link></Nav>
     } else {
-        accountStatus = <Nav.Link onClick={handleShow}>Sign Up</Nav.Link>;
+        options = <Nav>
+                    <Nav.Link onClick={() => navSelect('about')}>About</Nav.Link>
+                    <Nav.Link onClick={handleShow}>Sign Up</Nav.Link>
+                  </Nav>;
     }
 
     return (
@@ -36,10 +39,7 @@ const Topbar = (props) => {
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
             </Nav>
-            <Nav>
-            <Nav.Link onClick={() => navSelect('about')}>About</Nav.Link>
-            {accountStatus}
-            </Nav>
+            {options}
         </Navbar.Collapse>
         </Navbar>
 

@@ -7,9 +7,9 @@ export default class App extends React.Component {
         super(props);
 
         this.state = {
-            welcome: false,
+            welcome: true,
             about: false,
-            auth: true,
+            auth: false,
             user: ''
         };
 
@@ -27,6 +27,10 @@ export default class App extends React.Component {
 
     loginUser(username, password) {
         console.log('logged in')
+        this.setState( { welcome: false,
+                         auth: true,
+                         user: username
+                        });
     }
 
     createUser(username, password) {

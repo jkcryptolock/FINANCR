@@ -1,5 +1,7 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/row';
+import Col from 'react-bootstrap/col';
 
 const Summary = (props) => {
 
@@ -31,9 +33,17 @@ const Summary = (props) => {
 
     return (
         <Container id="summary">
-            <h1>FINANCR Report for {month()}</h1>
-            <h3 id="balance">Current Balance: {formatter.format(props.balance)}</h3>
-            <h5 id="credit-debit">Credits: {formatter.format(props.credits)} | Debits: {formatter.format(props.debits)}</h5>
+            <Row className="justify-content-md-center">
+                <Col xs lg="2">
+                </Col>
+                <Col md="auto">
+                    <h1>FINANCR Report for {month()}</h1>
+                    <h3 id="balance">Current Balance: {formatter.format(props.balance)}</h3>
+                    <h5 id="credit-debit">Credits: {formatter.format(props.credits)} | Debits: {formatter.format(props.debits)}</h5>
+                </Col>
+                <Col xs lg="2">
+                </Col>
+            </Row>
         </Container>
     )
 }
