@@ -1,0 +1,39 @@
+{
+  "name": "Financr",
+  "version": "1.0.0",
+  "description": "Finance Tracking Website",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack -d --watch",
+    "start": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkcryptolock/FINANCR.git"
+  },
+  "author": "jkcryptolock",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jkcryptolock/FINANCR/issues"
+  },
+  "homepage": "https://github.com/jkcryptolock/FINANCR#readme",
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "body-parser": "^1.19.0",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
+    "@material-ui/core": "^4.4.3",
+    "@material-ui/icons": "^4.4.3",
+    "axios": "^0.19.0",
+    "babel-loader": "^8.0.6",
+    "chart.js": "^2.8.0",
+    "express": "^4.17.1",
+    "path": "^0.12.7",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  }
+}
