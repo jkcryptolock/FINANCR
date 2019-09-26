@@ -6,8 +6,7 @@ const categories = ['Deposits', 'Entertainment', 'Health Care', 'Lodging', 'Merc
 const generateExpenses = () => {
     let expenseArr = [];
 
-    for (let i = 0; i < 500; i++) {
-        let month = faker.date.month();
+    for (let i = 1; i < 31; i++) {
         let category = categories[Math.floor(Math.random() * 9)];
         let amount = +faker.finance.amount();
 
@@ -17,8 +16,10 @@ const generateExpenses = () => {
             amount *= 20;
         }
 
-        expenseArr.push({"year": 2019,
-                         "month": month,
+        expenseArr.push({"email": "demo@demo.com",
+                         "date": `5/${i}/2019`,
+                         "year": 2019,
+                         "month": "May",
                          "category": category,
                          "amount": amount
                         })
@@ -29,29 +30,16 @@ const generateExpenses = () => {
 
 let expenses = generateExpenses();
 
-
-let data = [
-    {"email": "demo@demo.com",
-    "password": "password",
-    "data": expenses
-    }];
-
-const seed = document => {
-    axios({
-        method: 'post',
-        url: 'http://localhost:3000/user',
-        data: document
-    })
-    .then(data => {
-        console.log('success');
-    })
-    .catch(err => {
-        console.log(err);
-    })
+const generate = () => {
+    expenses.forEach(expense => {
+        axios.post('http://localhost:3000/addexpense', expense)
+        .then(result => {
+            console.log('success')
+        })
+        .catch(err => {
+        });
+    });
 }
 
-seed(data);
-
-
-
+generate();
 
