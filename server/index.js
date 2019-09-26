@@ -9,6 +9,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../public'));
 
+//Find User's Transactions
+
 app.get('/user', (req, res) => {
     userLookup.find({ email: req.query.email })
     .exec()
@@ -28,9 +30,11 @@ app.get('/user', (req, res) => {
     })
     .catch(err => {
       console.error(err);
-      res.status(500).send({ error: err });
+      res.status(404).send({ error: err });
     });
 });
+
+//Verify User Exists and Password Matches
 
 app.get('/auth', (req, res) => {
     userLookup.find({ email: req.query.email })
@@ -45,9 +49,11 @@ app.get('/auth', (req, res) => {
         }
     })
     .catch(err => {
-        res.status(500).send({ error: err });
+        res.status(500).send("can't find user");
     })
 });
+
+//Add User to Database
 
 app.post('/user', (req, res) => {
     const user = new userLookup({
@@ -61,12 +67,15 @@ app.post('/user', (req, res) => {
         res.status(201).send('success');
       })
       .catch(err => {
-        res.status(500).send({ error: err });
+        res.status(500).send("can't find user");
       });
 });
 
+//Add Expense to User's Transactions
+
 app.post('/addexpense', (req, res) => {
-    let newExpense = { year: +req.body.year,
+    let newExpense = { date: req.body.date,
+                       year: +req.body.year,
                        month: req.body.month,
                        category: req.body.category,
                        amount: +req.body.amount
@@ -76,8 +85,8 @@ app.post('/addexpense', (req, res) => {
         { email: req.body.email },
         { $push: { data: newExpense } })
     .exec()
-    .then(result => res.status(201).send())
-    .catch(err => res.status(501).send())
+    .then(result => res.status(201).send('success'))
+    .catch(err => res.status(500).send('adding expense failed'))
 });
 
 app.listen(PORT, () => console.log(`FINANCR is connected on port ${PORT}`));

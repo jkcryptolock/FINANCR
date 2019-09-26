@@ -49,7 +49,8 @@ export default class App extends React.Component {
         axios.post(`/user?email=${email}&password=${password}`)
         .then(result => {
             if (result.data === 'success') {
-                this.setState( { welcome: false,
+                this.setState( { 
+                    welcome: false,
                     auth: true,
                     user: email
                    });

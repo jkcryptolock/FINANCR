@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoPass = require('../mongo.js');
+const mongoPass = process.env.MONGO_KEY || require('../mongo.js');
 
 mongoose.connect(`mongodb+srv://jkconno:${mongoPass}@cluster0-uubnq.mongodb.net/FINANCR?retryWrites=true&w=majority`, { useNewUrlParser: true });
 

@@ -23,7 +23,7 @@ const Login = (props) => {
             <Button variant="success" type="submit" onClick={() => handleLogin(document.getElementById('formLoginEmail').value, document.getElementById('formLoginPassword').value)}>
                 Submit
             </Button>
-            <div>Demo Mode</div>
+            <span id="demo" onClick={() => handleLogin("demo@demo.com", "demo")}>  Demo Mode</span>
         </Form>
         
     )

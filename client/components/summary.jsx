@@ -17,7 +17,6 @@ const Summary = (props) => {
                 </Col>
                 <Col md="auto">
                     <h1>FINANCR Report for {props.month}</h1>
-                    <h3 id="balance">Current Balance: {formatter.format(props.balance)}</h3>
                     <h5 id="credit-debit">Credits: {formatter.format(props.credits)} | Debits: {formatter.format(props.debits)}</h5>
                 </Col>
                 <Col xs lg="2">

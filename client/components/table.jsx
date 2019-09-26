@@ -11,6 +11,7 @@ const DataTable = (props) => {
 
     const listItems = props.transactions.map(entry => 
         <tr>
+        <td>{entry.date}</td>
         <td>{entry.category}</td>
         <td>{formatter.format(entry.amount)}</td>
         </tr>
@@ -21,6 +22,7 @@ const DataTable = (props) => {
             <Table striped bordered hover variant="dark">
                 <thead>
                     <tr>
+                    <th>Date</th>
                     <th>Description</th>
                     <th>Amount</th>
                     </tr>

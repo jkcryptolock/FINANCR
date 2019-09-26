@@ -32,8 +32,6 @@ const Inputs = (props) => {
     return (
         <Container id="inputs">
             <Row className="justify-content-md-center">
-                <Col xs lg="2">
-                </Col>
                 <Col md="auto">
                 <InputGroup className="mb-3">
                     <DropdownButton
@@ -60,16 +58,8 @@ const Inputs = (props) => {
                     />
                 </InputGroup>
                 </Col>
-                <Col xs lg="2">
-                </Col>
-            </Row>
-            <Row className="justify-content-md-center">
-                <Col xs lg="4">
-                </Col>
                 <Col md="auto">
                 <Button id="addBtn" variant="success" onClick={handleSubmit}>Add Credit or Debit</Button>
-                </Col>
-                <Col xs lg="4">
                 </Col>
             </Row>
         </Container>

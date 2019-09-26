@@ -3,6 +3,7 @@ import axios from 'axios';
 import Summary from './summary.jsx';
 import Inputs from './inputs.jsx';
 import DataTable from './table.jsx';
+import Selectors from './selectors.jsx';
 
 export default class Userpage extends React.Component {
     constructor(props) {
@@ -37,6 +38,7 @@ export default class Userpage extends React.Component {
         month[11] = "December";
 
         let result = {
+            date: `${d.getMonth() + 1}/${d.getDay()}/${d.getFullYear()}`,
             month: month[d.getMonth()],
             year: d.getFullYear()
         }
@@ -46,7 +48,6 @@ export default class Userpage extends React.Component {
     }
 
     pullUserData(month) {
-        console.log('pulling')
         if (this.props.auth && this.props.user) {
             axios.get(`user?email=${this.props.user}&month=${month}`)
             .then(transactions => {
@@ -97,10 +98,15 @@ export default class Userpage extends React.Component {
         });
     }
 
+    changeMonth(input) {
+        this.pullUserData(input);
+    }
+
     addExpense(category, amount) {
         let currentDate = this.dateFinder();
         axios.post('/addexpense',
         { email: this.props.user,
+          date: currentDate.date,
           year: currentDate.year,
           month: this.state.month,
           category: category,
@@ -114,18 +120,6 @@ export default class Userpage extends React.Component {
         });
     }
 
-    refreshTransactions() {
-
-    }
-
-    updateExpense() {
-
-    }
-
-    deleteExpense() {
-
-    }
-
     render() {
         return(
             <>
@@ -134,6 +128,8 @@ export default class Userpage extends React.Component {
                     debits={this.state.debits}
                     month={this.state.month}
             />
+            <Selectors changeMonth={this.changeMonth.bind(this)} 
+                       transactions={this.state.transactions} />
             <Inputs categories={this.state.categories} 
                     addExpense={this.addExpense.bind(this)} />
             <DataTable transactions={this.state.transactions} />
