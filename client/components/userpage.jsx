@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
+import axios from 'axios';
 import Summary from './summary.jsx';
 import Inputs from './inputs.jsx';
 import DataTable from './table.jsx';
@@ -9,16 +9,112 @@ export default class Userpage extends React.Component {
         super(props);
 
         this.state = {
+            month: '',
             balance: 0,
             credits: 0,
             debits: 0,
-            categories: [],
-            amounts: {}
+            transactions: [],
+            categories: []
         };
 
     }
 
-    addExpense() {
+    dateFinder() {
+        const d = new Date();
+        const month = new Array();
+
+        month[0] = "January";
+        month[1] = "February";
+        month[2] = "March";
+        month[3] = "April";
+        month[4] = "May";
+        month[5] = "June";
+        month[6] = "July";
+        month[7] = "August";
+        month[8] = "September";
+        month[9] = "October";
+        month[10] = "November";
+        month[11] = "December";
+
+        let result = {
+            month: month[d.getMonth()],
+            year: d.getFullYear()
+        }
+
+        return result;
+
+    }
+
+    pullUserData(month) {
+        console.log('pulling')
+        if (this.props.auth && this.props.user) {
+            axios.get(`user?email=${this.props.user}&month=${month}`)
+            .then(transactions => {
+                this.setState( { transactions: transactions.data });
+
+                let total = 0;
+                let debits = 0;
+                let credits = 0;
+                let categories = [];
+                
+                for (let i = 0; i < transactions.data.length; i++) {
+                    categories.push(transactions.data[i].category)
+                    total += transactions.data[i].amount;
+                    if (transactions.data[i].amount > 0) {
+                        debits += transactions.data[i].amount;
+                    } else {
+                        credits += transactions.data[i].amount;
+                    }
+                }
+
+                categories = Array.from(new Set(categories));
+
+                this.setState(
+                    { month: month,
+                      balance: total,
+                      credits: credits,
+                      debits: debits,
+                      categories: categories
+                    }
+                );
+            }
+        )}
+    }
+
+    componentDidMount() {
+        let currentDate = this.dateFinder();
+        this.pullUserData(currentDate.month);
+    }
+
+    componentWillUnmount() {
+        this.setState( {
+            month: '',
+            balance: 0,
+            credits: 0,
+            debits: 0,
+            transactions: [],
+            categories: []
+        });
+    }
+
+    addExpense(category, amount) {
+        let currentDate = this.dateFinder();
+        axios.post('/addexpense',
+        { email: this.props.user,
+          year: currentDate.year,
+          month: this.state.month,
+          category: category,
+          amount: amount
+        })
+        .then(result => {
+            this.pullUserData(this.state.month);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }
+
+    refreshTransactions() {
 
     }
 
@@ -35,10 +131,12 @@ export default class Userpage extends React.Component {
             <>
             <Summary balance={this.state.balance} 
                     credits={this.state.credits} 
-                    debits={this.state.debits} 
+                    debits={this.state.debits}
+                    month={this.state.month}
             />
-            <Inputs />
-            <DataTable />
+            <Inputs categories={this.state.categories} 
+                    addExpense={this.addExpense.bind(this)} />
+            <DataTable transactions={this.state.transactions} />
             </>
         )
     }

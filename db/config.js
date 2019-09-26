@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const mongoPass = require('../mongo.js');
 
-mongoose.connect(`mongodb+srv://jkconno:${mongoPass}@cluster0-uubnq.mongodb.net/FINANCR?retryWrites=true&w=majority`, { useUnifiedTopology: true , useNewUrlParser: true });
+mongoose.connect(`mongodb+srv://jkconno:${mongoPass}@cluster0-uubnq.mongodb.net/FINANCR?retryWrites=true&w=majority`, { useNewUrlParser: true });
 
 const db = mongoose.connection;
 

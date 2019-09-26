@@ -1,5 +1,13 @@
+html {
+    height: 100%;
+}
+
 body {
-    background-image: url("../images/backgroundsix.jpg");
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(#ff8149, #b1006b);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 #f {
@@ -57,6 +65,10 @@ body {
     font-size: 2vw;
     font-weight: bold;
     text-shadow: 1px 1px 1px #666, 3px 3px 8px rgba(0,0,0,.5);
+}
+
+#addBtn {
+    margin-bottom: 30px;
 }
 
   

@@ -15,7 +15,7 @@ const Body = (props) => {
         )
     } else if (props.auth) {
         return (
-            <Userpage user={props.user} />
+            <Userpage auth={props.auth} user={props.user} />
         )
     }
 

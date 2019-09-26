@@ -65,4 +65,19 @@ app.post('/user', (req, res) => {
       });
 });
 
+app.post('/addexpense', (req, res) => {
+    let newExpense = { year: +req.body.year,
+                       month: req.body.month,
+                       category: req.body.category,
+                       amount: +req.body.amount
+                    }
+    console.log(newExpense)
+    userLookup.update(
+        { email: req.body.email },
+        { $push: { data: newExpense } })
+    .exec()
+    .then(result => res.status(201).send())
+    .catch(err => res.status(501).send())
+});
+
 app.listen(PORT, () => console.log(`FINANCR is connected on port ${PORT}`));

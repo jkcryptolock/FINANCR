@@ -4,12 +4,13 @@ import Button from 'react-bootstrap/Button';
 
 const Login = (props) => {
 
-    const handleLogin = (username, password) => {
-        props.loginUser(username, password);
+    const handleLogin = (email, password) => {
+        event.preventDefault();
+        props.loginUser(email, password);
     }
 
     return(
-        <Form id="login">
+        <Form id="login" onSubmit={() => handleLogin(document.getElementById('formLoginEmail').value, document.getElementById('formLoginPassword').value)}>
             <h4>Login</h4>
             <Form.Group controlId="formLoginEmail">
                 <Form.Label>Email address</Form.Label>

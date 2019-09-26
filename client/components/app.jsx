@@ -27,41 +27,39 @@ export default class App extends React.Component {
     }
 
     loginUser(email, password) {
-        // axios.get(`/auth?email=${email}&password=${password}`)
-        // .then(result => {
-        //     if (result.data === 'success') {
-        //         this.setState( { welcome: false,
-        //             auth: true,
-        //             user: email
-        //            });
-        //     } else {
-        //         console.alert('Incorrect Account Information');
-        //     }
-        // })
-        // .catch(err => {
-        //     console.log(err)
-        // });
-        this.setState( { welcome: false,
-            auth: true,
-            user: email
-           });
+        console.log('hello')
+        axios.get(`/auth?email=${email}&password=${password}`)
+        .then(result => {
+            console.log(result)
+            if (result.data === 'success') {
+                this.setState( { welcome: false,
+                    auth: true,
+                    user: email
+                   });
+            } else {
+                console.alert('Incorrect Account Information');
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        });
     }
 
     createUser(email, password) {
-        // axios.post(`/user?email=${email}&password=${password}`)
-        // .then(result => {
-        //     if (result.data === 'success') {
-        //         this.setState( { welcome: false,
-        //             auth: true,
-        //             user: email
-        //            });
-        //     } else {
-        //         console.alert('Account Creation Failure');
-        //     }
-        // })
-        // .catch(err => {
-        //     console.log(err)
-        // });
+        axios.post(`/user?email=${email}&password=${password}`)
+        .then(result => {
+            if (result.data === 'success') {
+                this.setState( { welcome: false,
+                    auth: true,
+                    user: email
+                   });
+            } else {
+                console.alert('Account Creation Failure');
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        });
     }
 
     logOutUser() {

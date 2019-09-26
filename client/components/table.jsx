@@ -3,35 +3,30 @@ import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 
 const DataTable = (props) => {
+
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        });
+
+    const listItems = props.transactions.map(entry => 
+        <tr>
+        <td>{entry.category}</td>
+        <td>{formatter.format(entry.amount)}</td>
+        </tr>
+    );
+    
     return (
         <Container id="table">
             <Table striped bordered hover variant="dark">
                 <thead>
                     <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
+                    <th>Description</th>
+                    <th>Amount</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    </tr>
-                    <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    </tr>
-                    <tr>
-                    <td>3</td>
-                    <td colSpan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                    </tr>
+                    {listItems}
                 </tbody>
             </Table>
         </Container>
