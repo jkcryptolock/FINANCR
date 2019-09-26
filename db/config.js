@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const mongoPass = require('../mongo.js');
 
-mongoose.connect(`mongodb+srv://jkconno:${mongoPass}@cluster0-uubnq.mongodb.net/test?retryWrites=true&w=majority`, { useNewUrlParser: true });
+mongoose.connect(`mongodb+srv://jkconno:${mongoPass}@cluster0-uubnq.mongodb.net/FINANCR?retryWrites=true&w=majority`, { useUnifiedTopology: true , useNewUrlParser: true });
 
 const db = mongoose.connection;
 
@@ -12,17 +12,18 @@ db.once('open', () => {
 
 const dataSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
+    year: Number,
     month: String,
     category: String,
     amount: Number
   });
   
-  const userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    user: String,
+    email: String,
     password: String,
     data: [dataSchema]
-  }, {collection: 'users' });
+    }, {collection: 'users' });
 
 const userLookup = mongoose.model('userLookup', userSchema);
 

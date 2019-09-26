@@ -1,6 +1,7 @@
 import React from 'react';
 import Topbar from './navbar.jsx';
 import Body from './body.jsx';
+import axios from 'axios';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -25,16 +26,42 @@ export default class App extends React.Component {
         }
     }
 
-    loginUser(username, password) {
-        console.log('logged in')
+    loginUser(email, password) {
+        // axios.get(`/auth?email=${email}&password=${password}`)
+        // .then(result => {
+        //     if (result.data === 'success') {
+        //         this.setState( { welcome: false,
+        //             auth: true,
+        //             user: email
+        //            });
+        //     } else {
+        //         console.alert('Incorrect Account Information');
+        //     }
+        // })
+        // .catch(err => {
+        //     console.log(err)
+        // });
         this.setState( { welcome: false,
-                         auth: true,
-                         user: username
-                        });
+            auth: true,
+            user: email
+           });
     }
 
-    createUser(username, password) {
-        console.log('created User')
+    createUser(email, password) {
+        // axios.post(`/user?email=${email}&password=${password}`)
+        // .then(result => {
+        //     if (result.data === 'success') {
+        //         this.setState( { welcome: false,
+        //             auth: true,
+        //             user: email
+        //            });
+        //     } else {
+        //         console.alert('Account Creation Failure');
+        //     }
+        // })
+        // .catch(err => {
+        //     console.log(err)
+        // });
     }
 
     logOutUser() {
