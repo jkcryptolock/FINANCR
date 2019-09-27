@@ -27,7 +27,6 @@ export default class App extends React.Component {
     }
 
     loginUser(email, password) {
-        console.log('hello')
         axios.get(`/auth?email=${email}&password=${password}`)
         .then(result => {
             if (result.data === 'success') {
