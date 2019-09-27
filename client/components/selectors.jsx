@@ -102,10 +102,10 @@ const Selectors = (props) => {
                 let monthlyChart = new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: months,
+                        labels: months.reverse(),
                         datasets: [{
                             label: `Monthly Expenditures`,
-                            data: sums,
+                            data: sums.reverse(),
                             fill: false,
                             borderColor: 'rgba(250, 0, 0, .6)'
                         }]
@@ -140,6 +140,10 @@ const Selectors = (props) => {
                     <Dropdown.Item onSelect={handleMonthChange}>July</Dropdown.Item>
                     <Dropdown.Item onSelect={handleMonthChange}>June</Dropdown.Item>
                     <Dropdown.Item onSelect={handleMonthChange}>May</Dropdown.Item>
+                    <Dropdown.Item onSelect={handleMonthChange}>April</Dropdown.Item>
+                    <Dropdown.Item onSelect={handleMonthChange}>March</Dropdown.Item>
+                    <Dropdown.Item onSelect={handleMonthChange}>February</Dropdown.Item>
+                    <Dropdown.Item onSelect={handleMonthChange}>January</Dropdown.Item>
                  </DropdownButton>
 
                 </Col>

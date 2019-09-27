@@ -17,9 +17,9 @@ const generateExpenses = () => {
         }
 
         expenseArr.push({"email": "demo@demo.com",
-                         "date": `5/${i}/2019`,
+                         "date": `1/${i}/2019`,
                          "year": 2019,
-                         "month": "May",
+                         "month": "January",
                          "category": category,
                          "amount": amount
                         })
