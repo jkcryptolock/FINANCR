@@ -80,7 +80,6 @@ app.post('/addexpense', (req, res) => {
                        category: req.body.category,
                        amount: +req.body.amount
                     }
-    console.log(newExpense)
     userLookup.update(
         { email: req.body.email },
         { $push: { data: newExpense } })

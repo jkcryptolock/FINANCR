@@ -131,7 +131,6 @@ const Selectors = (props) => {
                 <Col md="auto">
                 <DropdownButton
                     variant="light"
-                    size="small"
                     title="Change Month"
                     id="month-changer"
                     >
@@ -145,7 +144,6 @@ const Selectors = (props) => {
                     <Dropdown.Item onSelect={handleMonthChange}>February</Dropdown.Item>
                     <Dropdown.Item onSelect={handleMonthChange}>January</Dropdown.Item>
                  </DropdownButton>
-
                 </Col>
                 <Col md="auto">
                 <Button id="addBtn" variant="light" onClick={handleShowOne}>Category Breakdown</Button>

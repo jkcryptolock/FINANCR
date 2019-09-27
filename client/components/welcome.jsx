@@ -9,11 +9,11 @@ const Welcome = (props) => {
         <>
         <Container id="welcome">
             <Row>
-                <Col sm={9}>
+                <Col id="welcome-col" md={9}>
                     <div id="title">FINANCR</div>
                     <div id="subtitle">Track and manage your monthly finances for free!</div>
                 </Col>
-                <Col sm={3}>
+                <Col md={3}>
                     <Login loginUser={props.loginUser} />
                 </Col>
             </Row>
