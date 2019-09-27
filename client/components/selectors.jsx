@@ -126,7 +126,7 @@ const Selectors = (props) => {
 
     return (
         <>
-        <Container id="inputs">
+        <Container id="selectors">
             <Row className="justify-content-md-center">
                 <Col md="auto">
                 <DropdownButton

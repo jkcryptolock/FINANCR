@@ -8,9 +8,15 @@ const DataTable = (props) => {
         style: 'currency',
         currency: 'USD',
         });
+    
+    const sorted = props.transactions.sort((a,b) => {
+        a = a.date.split('/');
+        b = b.date.split('/');
+        return +b[1] > +a[1] ? 1 : -1;
+    })
 
-    const listItems = props.transactions.map(entry => 
-        <tr>
+    const listItems = sorted.map((entry, index) => 
+        <tr key={index}>
         <td>{entry.date}</td>
         <td>{entry.category}</td>
         <td>{formatter.format(entry.amount)}</td>

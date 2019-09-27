@@ -10,8 +10,8 @@ import Button from 'react-bootstrap/Button';
 
 const Inputs = (props) => {
 
-    const dropdownItems = props.categories.map(cat => 
-        <Dropdown.Item onClick={() => dropdownSelector(cat)}>{cat}</Dropdown.Item>
+    const dropdownItems = props.categories.map((cat, index) => 
+        <Dropdown.Item key={index} onClick={() => dropdownSelector(cat)}>{cat}</Dropdown.Item>
     );
 
     const handleSubmit = () => {
