@@ -30,14 +30,13 @@ export default class App extends React.Component {
         console.log('hello')
         axios.get(`/auth?email=${email}&password=${password}`)
         .then(result => {
-            console.log(result)
             if (result.data === 'success') {
                 this.setState( { welcome: false,
                     auth: true,
                     user: email
                    });
             } else {
-                console.alert('Incorrect Account Information');
+                console.log('error logging in');
             }
         })
         .catch(err => {

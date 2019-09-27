@@ -16,7 +16,7 @@ const Inputs = (props) => {
 
     const handleSubmit = () => {
         const catValue = document.getElementById('categorySelection').value;
-        const expenseValue = document.getElementById('expenseValue').value;
+        const expenseValue = +document.getElementById('expenseValue').value;
 
         props.addExpense(catValue, expenseValue);
         

@@ -14,7 +14,8 @@ export default class Userpage extends React.Component {
             balance: 0,
             credits: 0,
             debits: 0,
-            transactions: [],
+            monthTransactions: [],
+            allTransactions: [],
             categories: []
         };
 
@@ -47,11 +48,23 @@ export default class Userpage extends React.Component {
 
     }
 
-    pullUserData(month) {
+    pullAllData() {
+        if (this.props.auth && this.props.user) {
+            axios.get(`user?email=${this.props.user}`)
+            .then(transactions => {
+                this.setState( { allTransactions: transactions.data });
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        }
+    }
+
+    pullMonthData(month) {
         if (this.props.auth && this.props.user) {
             axios.get(`user?email=${this.props.user}&month=${month}`)
             .then(transactions => {
-                this.setState( { transactions: transactions.data });
+                this.setState( { monthTransactions: transactions.data });
 
                 let total = 0;
                 let debits = 0;
@@ -84,7 +97,8 @@ export default class Userpage extends React.Component {
 
     componentDidMount() {
         let currentDate = this.dateFinder();
-        this.pullUserData(currentDate.month);
+        this.pullMonthData(currentDate.month);
+        this.pullAllData();
     }
 
     componentWillUnmount() {
@@ -93,13 +107,14 @@ export default class Userpage extends React.Component {
             balance: 0,
             credits: 0,
             debits: 0,
-            transactions: [],
+            monthTransactions: [],
+            allTransactions: [],
             categories: []
         });
     }
 
     changeMonth(input) {
-        this.pullUserData(input);
+        this.pullMonthData(input);
     }
 
     addExpense(category, amount) {
@@ -113,7 +128,8 @@ export default class Userpage extends React.Component {
           amount: amount
         })
         .then(result => {
-            this.pullUserData(this.state.month);
+            this.pullMonthData(this.state.month);
+            this.pullAllData();
         })
         .catch(err => {
             console.log(err);
@@ -129,10 +145,11 @@ export default class Userpage extends React.Component {
                     month={this.state.month}
             />
             <Selectors changeMonth={this.changeMonth.bind(this)} 
-                       transactions={this.state.transactions} />
+                       transactions={this.state.monthTransactions}
+                       allTransactions={this.state.allTransactions} />
             <Inputs categories={this.state.categories} 
                     addExpense={this.addExpense.bind(this)} />
-            <DataTable transactions={this.state.transactions} />
+            <DataTable transactions={this.state.monthTransactions} />
             </>
         )
     }
