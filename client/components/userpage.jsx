@@ -39,7 +39,7 @@ export default class Userpage extends React.Component {
         month[11] = "December";
 
         let result = {
-            date: `${d.getMonth() + 1}/${d.getDay()}/${d.getFullYear()}`,
+            date: `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`,
             month: month[d.getMonth()],
             year: d.getFullYear()
         }
