@@ -35,7 +35,6 @@ FINANCR is your one stop expense and income tracker, with spending category brea
   <tr>
     <td align="center"><img src="https://d33wubrfki0l68.cloudfront.net/22e10665fd27c809674f166b54f5c67e3ac62570/2ceb4/img/users/react-bootstrap.png" alt="React" title="React" width="80px"/></td>
     <td align="center"><img src="https://buttercms.com/static/images/tech_banners/ExpressJS.png" alt="Express" title="Express" width="60px"/></td>
-    <td align="center"><img src="https://avatars0.githubusercontent.com/u/42357678?v=4" alt="Heroku" title="Heroku" width="60px"/></td>
   </tr>
   <tr>
     <td align="center"><img src="https://www.chartjs.org/img/chartjs-logo.svg" alt="Chart.js" title="Chart.js" width="60px"/></td>
